@@ -1,0 +1,15 @@
+html * {
+  font-family: Roboto;
+}
+
+.summary-data-label{
+  text-decoration: underline;
+}
+
+.summary-data {
+
+}
+
+.small-data {
+  font-size: 8px;
+}
