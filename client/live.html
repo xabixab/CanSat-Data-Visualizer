@@ -25,10 +25,11 @@
     <!--<script src="js/live_websockets.js"></script>-->
     <script src="js/live_receiver.js"></script>
     <script src="js/live_chartdriver.js"></script>
+    <script src="js/live_drt.js"></script>
 
   </head>
   <body>
-    <nav class="navbar navbar navbar-default">
+    <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand brand" href="/">Loading...</a>
@@ -38,6 +39,7 @@
           <li> <a href="/stored.htm">Stored data visualization</a></li>
           <li> <a href="/pickup.htm">CanSat Pick-Up</a></li>
           <li> <a href="#">Console</a></li>
+          <li id="show-drt-tab"> <a href="#" id="show-drt-btn">Show DRT</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="connected"><a href="#" id="lbl-connected">Connected to Loading...</a></li>
@@ -46,6 +48,23 @@
       </div>
     </nav>
     <div class="container" id="main-container">
+
+      <nav class="navbar navbar-default" id="drt-panel">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Data Recorder Tool</a>
+          </div>
+          <ul class="nav navbar-nav navbar-left">
+            <a class="navbar-btn btn btn-success notrecording">Start Recording</a>
+            <a class="navbar-btn btn btn-danger recording">Stop Recording</a>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <a class="navbar-btn btn btn-danger recording">Stop Recording</a>
+          </ul>
+        </div>
+      </nav>
+
       <div class="alert alert-danger disconnected" role="alert">Warning! Receiver not connected. Please, connect.</div>
       <div class="row" id="summary">
           <div class="col-md-3" align="center">

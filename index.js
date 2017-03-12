@@ -10,8 +10,11 @@ log("http", "Server listening on " + config.port);
 
 var Receiver = require(__dirname + "/receiver.js");
 var ValueManager = require(__dirname + "/valueManager.js")
+var Recorder = require(__dirname + "/recorder.js");
 var manager = new ValueManager();
 var rec = new Receiver();
+var recorder = new Recorder();
+
 
 app.get('/getConfig', function (req, res) {
   res.json(config);
@@ -31,7 +34,7 @@ rec.on("receivedValue", function(value){
 
 manager.on("newValue", function(params){
   io.emit("newValue", params);
-  log("debug", "New value of " + params.name + " sent. " + params.value);
+  // log("debug", "New value of " + params.name + " sent. " + params.value);
 });
 
 io.on('connection', function (socket) {
@@ -42,6 +45,10 @@ io.on('connection', function (socket) {
   socket.on("connectReceiver", function(){
     rec.connect();
     log("io", "connectReceiver recived")
+  });
+
+  socket.on("requestDrtData", function(){
+    socket.emit("drtData", recorder.getData());
   });
 
   socket.emit("connectionSend", {

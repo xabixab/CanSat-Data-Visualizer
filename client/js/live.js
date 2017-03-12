@@ -4,6 +4,7 @@ $(function(){
     globalConfig = data;
     var brand = data.name + " | Dashboard";
     $("title").html(brand);
+    $(".connected").hide();
     $(".brand").html(data.name);
     init();
   });
@@ -28,6 +29,6 @@ function init(){
 
   chr = new Charts();
   rec = new Receiver({});
-
+  dtr = new Recorder({});
 
 }

@@ -27,7 +27,7 @@ class Charts {
     Object.keys(that.charts).forEach(function(index){
       var chart = that.charts[index];
       $("#chart-" + index + "-title").html(chart.name);
-      $("#chart-" + index + "-canvas").width(that.width);
+      // $("#chart-" + index + "-canvas").width(that.width);
 
       $("#data-" + index + "-title").html(chart.name);
       $("#data-" + index + "-unit").html(chart.unit);
