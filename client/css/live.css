@@ -13,3 +13,12 @@ html * {
 .small-data {
   font-size: 8px;
 }
+
+.btn-margin {
+  margin: 1em;
+}
+
+.chart {
+  height: 120px;
+  width:40vw;
+}

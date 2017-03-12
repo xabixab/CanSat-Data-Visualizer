@@ -1,3 +1,0 @@
-$(function(){
-  $("#btn-connect").click();
-})

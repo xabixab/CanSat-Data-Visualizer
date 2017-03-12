@@ -22,6 +22,9 @@
     <script src="smoothie.js"></script>
     <!-- Own JS -->
     <script src="js/live.js"></script>
+    <!--<script src="js/live_websockets.js"></script>-->
+    <script src="js/live_receiver.js"></script>
+    <script src="js/live_chartdriver.js"></script>
 
   </head>
   <body>
@@ -34,42 +37,79 @@
           <li class="active"><a href="/live.htm">Streaming Visualization</a></li>
           <li> <a href="/stored.htm">Stored data visualization</a></li>
           <li> <a href="/pickup.htm">CanSat Pick-Up</a></li>
+          <li> <a href="#">Console</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li id="lbl-connected"><a href="#">Connected</a></li>
-          <li><a href="#" id="btn-connect">Connect</a></li>
+          <li class="connected"><a href="#" id="lbl-connected">Connected to Loading...</a></li>
+          <li class="disconnected"><a href="#" id="btn-connect">Connect</a></li>
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <div class="alert alert-danger" role="alert">Warning! Receiver not connected. Please, connect.</div>
+    <div class="container" id="main-container">
+      <div class="alert alert-danger disconnected" role="alert">Warning! Receiver not connected. Please, connect.</div>
       <div class="row" id="summary">
           <div class="col-md-3" align="center">
-          <span class="summary-data-label">Presure</span>
-          <h1>0</h1>
-          <p>mmHg</p>
+          <span class="summary-data-label" id="data-0-title">Loading...</span>
+          <h1 id="data-0-value">NaN</h1>
+          <p id="data-0-unit">Loading...</p>
         </div>
         <div class="col-md-3" align="center">
-          <span class="summary-data-label">Temperature</span>
-          <h1>0</h1>
-          <p>º Celsius</p>
+          <span class="summary-data-label" id="data-1-title">Loading...</span>
+          <h1 id="data-1-value">NaN</h1>
+          <p id="data-1-unit">Loading...</p>
         </div>
         <div class="col-md-3" align="center">
-          <span class="summary-data-label">Height</span>
-          <h1>0</h1>
-          <p>meters</p>
+          <span class="summary-data-label" id="data-2-title">Loading...</span>
+          <h1 id="data-2-value">NaN</h1>
+          <p id="data-2-unit">Loading...</p>
         </div>
+
         <div class="col-md-3" align="center">
-          <span class="summary-data-label">Position</span>
-          <h1>OK</h1>
+          <span class="summary-data-label" id="data-3-title">Loading...</span>
+          <h1 id="data-3-value">NaN</h1>
+          <p id="data-3-unit">Loading...</p>
+        </div>
+
+        <!-- Now GPS data. This is special -->
+        <!-- <div class="col-md-3" align="center">
+          <span class="summary-data-label" id="data-3-title">Loading...</span>
+          <p>
+            <a class="btn btn-success btn-margin">Pick-Up</a>
+          </p>
           <p class="small-data">
             Lat:42.805912299999996 <br />
             Long: -1.6299337999999999
           </p>
         </div>
+      -->
+
       </div>
       <hr />
-      a
+
+      <div class="row">
+        <div class="col-md-6" id="chart-row">
+          <h3 id="chart-0-title">Loading...</h3>
+          <canvas class="chart" id="chart-0-canvas"></canvas>
+
+          <h3 id="chart-2-title">Loading...</h3>
+          <canvas class="chart" id="chart-1-canvas"></canvas>
+        </div>
+
+        <div class="col-md-6">
+          <h3 id="chart-1-title">Loading...</h3>
+          <canvas class="chart" id="chart-2-canvas"></canvas>
+
+          <h3 id="chart-3-title">Loading...</h3>
+          <canvas class="chart" id="chart-3-canvas"></canvas>
+        </div>
+      </div>
+
+
+
+      <hr />
+
+
+
     </div>
   </body>
 </html>
