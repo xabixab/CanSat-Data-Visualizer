@@ -5,7 +5,8 @@ class Receiver {
     that.connected = false;
     that.params = params;
     //ws.on("connectionChange", that.connectionChange);
-    //ws.on("connectionSend", that.connectionChange)
+    ws.emit("connectionRequest");
+    ws.on("connectionSend", that.connectionChange)
     that.setupBinds();
   }
 
@@ -21,7 +22,6 @@ class Receiver {
       $(".disconnected").hide();
       $(".connected").show();
       $("#lbl-connected").html("Connected to " + params.tty);
-
     } else {
       $(".disconnected").show();
       $(".connected").show();

@@ -24,7 +24,7 @@ app.use('/', express.static(__dirname + '/client'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 rec.on("receiverConnectionChange", function(status){
-  io.emit("connectionChange", status);
+  io.emit("connectionSend", status);
   log("io", "connection change emited. " + status.connected + " " + status.tty);
 });
 
@@ -51,10 +51,14 @@ io.on('connection', function (socket) {
     socket.emit("drtData", recorder.getData());
   });
 
-  socket.emit("connectionSend", {
-    "connected": rec.connected,
-    "tty": rec.tty
+  socket.on("connectionRequest", function(){
+    log("io", "connectionRequest received. Sending connectionSend")
+    socket.emit("connectionSend", {
+      "connected": rec.connected,
+      "tty": rec.tty
+    });
   });
+
 
   socket.emit("currentValues", {
 
