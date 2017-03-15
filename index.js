@@ -38,19 +38,26 @@ manager.on("newValue", function(params){
 });
 
 io.on('connection', function (socket) {
+
   socket.on("disconnect", function(){
     log("io", "Client disconnected");
   });
 
-  socket.on("connectReceiver", function(){
-    rec.connect();
-    log("io", "connectReceiver recived")
-  });
+  /*
+    DRT Bindings
+  */
+
+  socket.on("drtStartRecording", recorder.startRecording);
+  socket.on("drtStopRecording", recorder.stopRecording);
 
   socket.on("requestDrtData", function(){
     socket.emit("drtData", recorder.getData());
+    log("io", "drtData requested. Sending..");
   });
 
+  /*
+    Receiver Bindings
+  */
   socket.on("connectionRequest", function(){
     log("io", "connectionRequest received. Sending connectionSend")
     socket.emit("connectionSend", {
@@ -59,9 +66,9 @@ io.on('connection', function (socket) {
     });
   });
 
-
-  socket.emit("currentValues", {
-
+  socket.on("connectReceiver", function(){
+    rec.connect();
+    log("io", "connectReceiver recived")
   });
 
   log("io", "New client connected");

@@ -3,6 +3,7 @@ class Receiver {
   constructor(params){
     var that = this;
     that.connected = false;
+    $(".connected").hide();
     that.params = params;
     //ws.on("connectionChange", that.connectionChange);
     ws.emit("connectionRequest");
