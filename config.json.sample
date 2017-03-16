@@ -4,33 +4,35 @@
   "ws_host": "http://localhost:3000/",
   "name":"IturramaSat",
   "socketTimeout":5000,
+  "receiver" :"/arduino_receiver.js",
+  "tty": "/dev/ttyUSB0",
   "charts": {
     "0": {
       "name": "Presure",
       "sname": "pre",
-      "unit": "mmHg",
-      "start_value": 6
+      "unit": "mbar",
+      "start_value": 0
     },
 
     "1": {
       "name": "Temperature",
       "sname": "temp",
       "unit": "ºC",
-      "start_value": 4
+      "start_value": 0
     },
 
     "2": {
       "name": "Altitude",
       "sname": "alt",
       "unit": "meters",
-      "start_value": 2
+      "start_value": 0
     },
 
     "3": {
       "name": "Vertical speed",
       "sname": "vvel",
-      "unit": "m/s²",
-      "start_value": 90
+      "unit": "m/s",
+      "start_value": 0
     }
   },
 
