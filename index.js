@@ -8,7 +8,7 @@ var io = require('socket.io')(server);
 
 log("http", "Server listening on " + config.port);
 
-var Receiver = require(__dirname + "/receiver.js");
+var Receiver = require(__dirname + config.receiver);
 var ValueManager = require(__dirname + "/valueManager.js")
 var Recorder = require(__dirname + "/recorder.js");
 var manager = new ValueManager();
