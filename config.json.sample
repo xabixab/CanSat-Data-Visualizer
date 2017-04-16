@@ -77,6 +77,16 @@
       "max":4.2,
       "accuracy": 3
     }
+  },
+  "iturramasat_receiver":{
+    "send_multiply":{
+      "temp":100,
+      "pre":100,
+      "gpslat":1000000,
+      "gpslong":1000000
+    },
+    "baudrate": 9600,
+    "tty": "/dev/ttyUSB0"
   }
 
 }
