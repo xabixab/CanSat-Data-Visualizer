@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title class="name">Loading...</title>
+
+   <!-- Bootstrap -->
+   <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+   <!-- Roboto Font -->
+   <link href="/bower_components/roboto-fontface/css/roboto/roboto-fontface.css" rel="stylesheet">
+   <!-- Own CSS -->
+   <link href="css/pickup.css" rel="stylesheet">
+   <!-- Font Awesome Markers -->
+   <script src="/bower_components/fontawesome-markers/fontawesome-markers.min.js"></script>
+   <!-- jQuery -->
+   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+   <!-- Bootstrap JS -->
+   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+   <!-- Socket.IO -->
+   <script src="/socket.io/socket.io.js"></script>
+   <!-- Random Colors -->
+   <script src="/bower_components/randomcolor/randomColor.js"></script>
+   <!-- Own JS -->
+   <script src="js/pickup.js"></script>
+   <script src="js/pickup_markermanager.js"></script>
+ </head>
+<body>
+    <div id="toolbox">
+      <div id="maximize-toggle">
+        <span id="maximize-toggle-icon" class="glyphicon glyphicon-menu-down inline"></span>
+        <div class="spacer-vertical">
+
+        </div>
+        <h4 class="underlined inline">CanSat Pick-up</h4>
+      </div>
+
+      <div class="maximized">
+        <ul class="list-group" id="cansatlist">
+          <li class="list-group-item"><span class="glyphicon glyphicon-king"></span> Iturrama Sat</li>
+        </ul>
+        <ul class="list-group" id="clientlist">
+          <li class="list-group-item"><span class="glyphicon glyphicon-user"></span> You</li>
+          <li class="list-group-item"><span class="glyphicon glyphicon-phone"></span> Xiaomi Redmi 4</li>
+          <li class="list-group-item"><span class="glyphicon glyphicon-tower"></span> Firefox</li>
+        </ul>
+      </div>
+
+    </div>
+    <div id="map"></div>
+  </body>

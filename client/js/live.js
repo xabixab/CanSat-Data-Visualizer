@@ -14,8 +14,22 @@ var ws;
 var rec;
 var chr;
 
+var ioFixInterval;
 function init(){
-  ws = io();
+  ioFixInterval = setInterval(function(){
+    if(ws.connected === false){
+      $("#io-hardcode").show();
+    } else {
+      $("#io-hardcode").hide();
+    }
+  }, 2000);
+
+  $("#io-hardcode-btn").click(function () {
+    ws.connected = true;
+    $("#io-hardcode").hide();
+    clearInterval(ioFixInterval);
+  });
+  ws = io(globalConfig.ws_host);
   ws.on('connect', function(){
     console.log("Connected to server!");
   });

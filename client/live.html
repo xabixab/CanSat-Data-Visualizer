@@ -35,9 +35,9 @@
           <a class="navbar-brand brand" href="/">Loading...</a>
         </div>
         <ul class="nav navbar-nav navbar-left">
-          <li class="active"><a href="/live.htm">Streaming Visualization</a></li>
-          <li> <a href="/stored.htm">Stored data visualization</a></li>
-          <li> <a href="/pickup.htm">CanSat Pick-Up</a></li>
+          <li class="active"><a href="/live.html">Streaming Visualization</a></li>
+          <li> <a href="/stored.html">Stored data visualization</a></li>
+          <li> <a href="/pickup.html">CanSat Pick-Up</a></li>
           <li> <a href="#">Console</a></li>
           <li id="show-drt-tab"> <a href="#" id="show-drt-btn">Show DRT</a></li>
         </ul>
@@ -68,6 +68,9 @@
       </nav>
 
       <div class="alert alert-danger disconnected" role="alert">Warning! Receiver not connected. Please, connect.</div>
+      <div class="alert alert-danger" role="alert" id="io-hardcode">
+        Warning! ws.connected === false    Hardcode: <a class="btn btn-warning" href="#" id="io-hardcode-btn"> Set true</a>
+      </div>
       <div class="row" id="summary">
           <div class="col-md-3" align="center">
           <span class="summary-data-label" id="data-0-title">Loading...</span>
