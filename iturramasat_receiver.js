@@ -10,12 +10,16 @@ var config = require(__dirname + '/config.json');
 var SerialPort = require('serialport');
 var parsers = SerialPort.parsers;
 var recvConfig = config.iturramasat_receiver;
+var hCalculator = require(__dirname + "/altitude_calculator.js");
+
 class Receiver extends EventEmitter {
   constructor(){
     super();
     var self = this;
     self.connected = false;
     self.tty = recvConfig.tty;
+    self.currentValues = {};
+    self.simulateFirstGPS();
   }
 
   connect(){
@@ -26,9 +30,12 @@ class Receiver extends EventEmitter {
     }
 
     self.port = new SerialPort(self.tty, {
-      baudRate:recvConfig.baudRate,
+      baudRate:recvConfig.baudrate,
       parser:SerialPort.parsers.readline(';')
     });
+    self.port.on("error", function (error) {
+      log("serial", error);
+    })
     self.port.on("open", function(){
       log("receiver", "Successfully connected to the receiver");
       self.connected = true;
@@ -36,7 +43,7 @@ class Receiver extends EventEmitter {
         "connected": true,
         "tty": self.tty
       });
-      self.port.write("test");
+      self.port.write("Ping!");
       self.port.on("data", function(data){
         log("receiver", data);
 
@@ -44,30 +51,84 @@ class Receiver extends EventEmitter {
         var now = new Date().getTime();
 
         if(parsedData.length === 4){
+          if(typeof self.firstMeasurement == "undefined"){
+            self.firstMeasurement = true;
+          } else  if(self.firstMeasurement){
+            self.firstMeasurement = false;
+          }
+
+          self.currentValues.temp = parsedData[0] / recvConfig.send_multiply.temp;
+          self.currentValues.pre = parsedData[1] / recvConfig.send_multiply.pre;
+          self.currentValues.gpslat = parsedData[2] / recvConfig.send_multiply.gpslat;
+          self.currentValues.gpslong = parsedData[3] / recvConfig.send_multiply.gpslong;
+
+          if(!self.firstMeasurement){
+            self.previusTime = self.currentTime;
+            self.currentTime = now;
+            self.intervalTime = self.currentTime - self.previusTime;
+            self.previusAltitude = self.currentValues.altitude;
+
+            self.currentValues.altitude = hCalculator(self.currentValues.temp, self.currentValues.pre);
+            self.movedDistance = self.currentValues.altitude - self.previusAltitude;
+            self.movedVelocity = self.movedDistance / self.intervalTime * 1000;
+          } else {
+            self.currentTime = now;
+            self.currentValues.altitude = hCalculator(self.currentValues.temp, self.currentValues.pre);
+          }
+
           self.emit("receivedValue", {
             "name": "temp",
             "time": now,
-            "value": parsedData[0] / recvConfig.send_multiply.temp
+            "value": self.currentValues.temp
           });
           self.emit("receivedValue", {
             "name": "pre",
             "time": now,
-            "value": parsedData[1] / recvConfig.send_multiply.pre
+            "value": self.currentValues.pre
           });
           self.emit("receivedValue", {
             "name": "gpslat",
             "time": now,
-            "value": parsedData[2] / recvConfig.send_multiply.gpslat
+            "value": self.currentValues.gpslat
           });
           self.emit("receivedValue", {
             "name": "gpslong",
             "time": now,
-            "value": parsedData[3] / recvConfig.send_multiply.gpslong
+            "value": self.currentValues.gpslong
           });
+          self.emit("receivedValue", {
+            "name": "alt",
+            "time": now,
+            "value": self.currentValues.altitude
+          });
+
+          if(!self.firstMeasurement){
+            self.emit("receivedValue", {
+              "name": "vvel",
+              "time": now,
+              "value": self.movedVelocity
+            });
+          }
         } else {
           log("protocol", "no-valid values received.");
         }
       })
+    });
+  }
+
+  simulateFirstGPS(){
+    var self = this;
+    var now = Date.now();
+    log("receiver", "simulating first GPS coords..");
+    self.emit("receivedValue", {
+      "name": "gpslat",
+      "time": now,
+      "value": recvConfig.firstPos.lat
+    });
+    self.emit("receivedValue", {
+      "name": "gpslong",
+      "time": now,
+      "value": recvConfig.firstPos.lng
     });
   }
 }
