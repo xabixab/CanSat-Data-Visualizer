@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title class="name">Postprocessed images viewer</title>
+   <!-- Bootstrap -->
+   <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+   <!-- Roboto Font -->
+   <link href="/bower_components/roboto-fontface/css/roboto/roboto-fontface.css" rel="stylesheet">
+   <!-- Own CSS -->
+   <link href="css/view.css" rel="stylesheet">
+
+   <!-- jQuery -->
+   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+   <script src="/bower_components/jquery-zoom/jquery.zoom.min.js"></script>
+
+   <!-- Bootstrap JS -->
+   <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+   <!-- Own JS -->
+   <script src="js/view.js"></script>
+   <script src="js/view_viewer.js"></script>
+ </head>
+ <body>
+   <div class="container" align="center">
+     <div class="btn-group" role="group" aria-label="...">
+       <button type="button" class="btn btn-primary btn-margin" id="camselector-a">A Camera</button>
+       <button type="button" class="btn btn-default btn-margin" id="camselector-b">B Camera</button>
+       <!-- <button type="button" class="btn btn-default">C Kamara</button> -->
+      </div>
+      <div class="btn-spacer">
+
+      </div>
+
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previus</button>
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-next">Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+      </div>
+      <div class="btn-spacer">
+
+      </div>
+
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-prev10"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> 10 frames</button>
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-next10">10 frames <span class="glyphicon glyphicon-forward" aria-hidden="true"></span></button>
+      </div>
+      <div class="btn-spacer">
+
+      </div>
+
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-prev100"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> 100 frames</button>
+        <button type="button" class="btn btn-default btn-margin" id="frameselector-next100">100 frames <span class="glyphicon glyphicon-forward" aria-hidden="true"></span></button>
+      </div>
+
+      <div class="btn-spacer">
+
+      </div>
+
+      <button class="btn btn-default btn-margin" id="btn-download">Download</button>
+
+      <div class="btn-spacer">
+
+      </div>
+
+      <button class="btn btn-default btn-margin" id="btn-fullscreen">Fullscreen</button>
+
+     <hr  />
+
+     <div class="row">
+  <div class="col-md-10">
+    <img id="viewer" src="processed/a/raw/frame_1.png" allowfullscreen/>
+  </div>
+  <div class="col-md-2">
+    <input type="text" class="form-control" id="frame-label" placeholder="Frame 1" value="Frame 1" disabled>
+    <br />
+    <div id="views-menu">
+
+    </div>
+    <div id="image-downloader">
+      <a id="download-link" download></a>
+    </div>
+  </div>
+</div>
+   </div>
+
+
+ </body>
+</html>
