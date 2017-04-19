@@ -17,6 +17,9 @@
   "dependencies": {
     "roboto-fontface": "^0.7.0",
     "jquery": "^3.1.1",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "jquery-zoom": "^1.7.18",
+    "fontawesome-markers": "^4.6.1",
+    "randomcolor": "https://github.com/davidmerfield/randomColor.git#^0.4.4"
   }
 }
