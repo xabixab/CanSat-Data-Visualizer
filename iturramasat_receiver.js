@@ -68,12 +68,12 @@ class Receiver extends EventEmitter {
             self.intervalTime = self.currentTime - self.previusTime;
             self.previusAltitude = self.currentValues.altitude;
 
-            self.currentValues.altitude = hCalculator(self.currentValues.temp, self.currentValues.pre);
+            self.currentValues.altitude = hCalculator(self.currentValues.pre);
             self.movedDistance = self.currentValues.altitude - self.previusAltitude;
             self.movedVelocity = self.movedDistance / self.intervalTime * 1000;
           } else {
             self.currentTime = now;
-            self.currentValues.altitude = hCalculator(self.currentValues.temp, self.currentValues.pre);
+            self.currentValues.altitude = hCalculator(self.currentValues.pre);
           }
 
           self.emit("receivedValue", {

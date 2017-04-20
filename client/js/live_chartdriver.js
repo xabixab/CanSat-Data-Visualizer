@@ -62,7 +62,7 @@ class Charts {
     that.inverseMap = globalConfig.inverseMap;
     if (value.name in that.inverseMap){
       var index = that.inverseMap[value.name];
-      $("#data-" + index + "-value").html(value.value);
+      $("#data-" + index + "-value").html(Math.round(value.value));
     }
     if(value.name in chr){
       chr[value.name].line.append(value.time, value.value);
