@@ -4,8 +4,8 @@
   "ws_host": "http://localhost:3000/",
   "name":"IturramaSat",
   "socketTimeout":5000,
-  "receiver" :"/arduino_receiver.js",
-  "tty": "/dev/ttyUSB0",
+  "receiver" :"/iturramasat_receiver.js",
+  "tty": "/dev/ttyUSB3",
   "charts": {
     "0": {
       "name": "Presure",
@@ -86,7 +86,23 @@
       "gpslong":1000000
     },
     "baudrate": 9600,
-    "tty": "/dev/ttyUSB0"
+    "tty": "/dev/ttyUSB0",
+    "firstPos": {
+      "lat": 42.812126,
+      "lng": -1.649272
+    }
+  },
+  "pickup":{
+    "maps_key": "",
+    "defaultPos": {
+      "lat": 42.812126,
+      "lng": -1.649272
+    }
+  },
+  "altitude": {
+    "t0": 20.5,
+    "h0": 0,
+    "p0": 969.0
   }
 
 }
