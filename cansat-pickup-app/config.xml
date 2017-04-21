@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.iturramasat.pickup" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>IS. Pick-Up</name>
-    <!-- CUSTOM TEAM NAME: IturramaSat Pick-Up -->
     <description>
         Displays CanSat GPS Coords in a map.
     </description>
@@ -20,14 +19,13 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="Fullscreen" value="true" />
-        <!-- Icons. -->
-        <!--<icon src="assets/ldpi.png" density="ldpi" /> -->
-        <icon src="assets/mdpi.png" density="mdpi" />
-        <icon src="assets/hdpi.png" density="hdpi" />
-        <icon src="assets/xhdpi.png" density="xhdpi" />
-        <icon src="assets/xxhdpi.png" density="xxhdpi" />
-        <icon src="assets/xxxhdpi.png" density="xxxhdpi" />
+        <icon density="mdpi" src="assets/mdpi.png" />
+        <icon density="hdpi" src="assets/hdpi.png" />
+        <icon density="xhdpi" src="assets/xhdpi.png" />
+        <icon density="xxhdpi" src="assets/xxhdpi.png" />
+        <icon density="xxxhdpi" src="assets/xxxhdpi.png" />
     </platform>
     <plugin name="cordova-plugin-geolocation" spec="~2.4.2" />
     <plugin name="cordova-plugin-device" spec="~1.1.5" />
+    <engine name="android" spec="~6.1.2" />
 </widget>
