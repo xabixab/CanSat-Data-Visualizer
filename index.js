@@ -69,7 +69,7 @@ manager.on("newValue", function(params){
   io.emit("newValue", params);
   if(params.name == "gpslat" || params.name == "gpslong"){
     pum.parseValue(params);
-    log("debug", params.name);
+    //log("debug", params.name);
   }
   recorder.saveData(params);
   // log("debug", "New value of " + params.name + " sent. " + params.value);
@@ -90,7 +90,7 @@ io.on('connection', function (socket) {
 
   socket.on("requestDrtData", function(){
     socket.emit("drtData", recorder.getData());
-    log("io", "drtData requested. Sending..");
+    // log("io", "drtData requested. Sending..");
   });
 
   /*

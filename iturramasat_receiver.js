@@ -109,8 +109,22 @@ class Receiver extends EventEmitter {
               "value": self.movedVelocity
             });
           }
+        } else if (parsedData.length === 2){
+          log("cansat", parsedData[1]);
+          var now = Date.now();
+          self.emit("receivedValue", {
+            "name": "cansatMsg",
+            "time": now,
+            "value": parsedData[1]
+          });
         } else {
-          log("protocol", "no-valid values received.");
+          log("protocol", "no-valid values received: " + data);
+          var now = Date.now();
+          self.emit("receivedValue", {
+            "name": "cansatUnknown",
+            "time": now,
+            "value": data
+          });
         }
       })
     });
