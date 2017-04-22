@@ -71,6 +71,7 @@ manager.on("newValue", function(params){
     pum.parseValue(params);
     log("debug", params.name);
   }
+  recorder.saveData(params);
   // log("debug", "New value of " + params.name + " sent. " + params.value);
 });
 

@@ -1,6 +1,7 @@
 var EventEmitter = require('events').EventEmitter;
 var log = require(__dirname + "/consolelog.js").log;
 var config = require(__dirname + '/config.json');
+var fs = require('fs');
 
 class Recorder extends EventEmitter{
   constructor(){
@@ -8,6 +9,7 @@ class Recorder extends EventEmitter{
     var that = this;
     that.recording = false;
     that.recordingPath = undefined;
+    that.startRecording();
   }
 
   getData(){
@@ -18,8 +20,16 @@ class Recorder extends EventEmitter{
     }
   }
 
-  saveData(){
-
+  saveData(data){
+    var that = this;
+    if(that.recording){
+      that.fileInfo.push(data);
+      fs.writeFile(__dirname + '/saved_streams/' + that.date + ".json", JSON.stringify(that.fileInfo), function(error) {
+        if (error) {
+          log("recorder", "write error:  " + error.message);
+        }
+      });
+    }
   }
 
   startRecording(){
@@ -28,8 +38,10 @@ class Recorder extends EventEmitter{
       log("recorder", "already recording.");
       return false;
     } else {
+      log("recorder", "started recording");
       that.recording = true;
-
+      that.fileInfo = [];
+      that.date = Date.now();
     }
   }
 
@@ -39,6 +51,7 @@ class Recorder extends EventEmitter{
       log("recorder", "need to be recording to stop recording.");
       return false;
     } else {
+      log("recorder", "stoped recording")
       that.recording = false;
     }
   }

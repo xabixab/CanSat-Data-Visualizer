@@ -17,6 +17,7 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
-    "roboto-fontface": "^0.7.0"
+    "roboto-fontface": "^0.7.0",
+    "fontawesome-markers": "https://github.com/nathan-muir/fontawesome-markers.git#^4.6.1"
   }
 }
